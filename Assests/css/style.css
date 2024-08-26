@@ -9,6 +9,9 @@ body {
   width: 100vw;
   height: 100vh;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .score-board {
@@ -47,7 +50,7 @@ body {
 .comp, .your {
   font-family: "Roboto";
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.2vmax;
   color: #656565;
   background-color: whitesmoke;
   text-align: center;
@@ -60,4 +63,85 @@ body {
 .zero {
   color: black;
   font-size: 4vw;
+}
+
+.gameplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative; 
+}
+
+.paper-img {
+  width: 100%;
+  max-height: auto;
+}
+
+#rock {
+  background-color: #FFFFFF;
+  border-radius: 60%;
+  border: 12px solid #0074B6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; 
+  margin: auto;
+  margin-left: -160px;
+  transform: translate(-50%, -50%); 
+  width: 8rem; 
+  height: 8rem;
+}
+
+#paper {
+  background-color: #FFFFFF;
+  border-radius: 60%;
+  border: 12px solid #FFA943;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; 
+  margin: auto;
+  margin-top:150px ;
+  transform: translate(-50%, -50%); 
+  width: 8rem; 
+  height: 8rem;
+}
+
+#scissors {
+  background-color: #FFFFFF;
+  border-radius: 60%;
+  border: 12px solid #BD00FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; 
+  margin: auto;
+  margin-left:150px;
+  transform: translate(-50%, -50%); 
+  width: 8rem; 
+  height: 8rem;
+}
+
+.triangle {
+  width: 14em;
+  height: 14em;
+  border: 1em solid #000000A3;
+  position: absolute;
+  margin: auto;
+ 
+  transform: translate(-50%, -50%) rotate(-135deg);
+  border-right: none;
+  border-bottom: none;
+}
+
+.triangle::before {
+  position: absolute;
+  content: "";
+  border-top: 1em solid #000000A3;
+  width: calc(1.31 * (14em + 2em));
+  transform: rotate(135deg);
+  left: -3.3em;
+  top: 5.35em;
 }
