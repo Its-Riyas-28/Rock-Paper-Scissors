@@ -74,11 +74,6 @@ body {
   position: relative; 
 }
 
-.paper-img {
-  width: 100%;
-  max-height: auto;
-}
-
 #rock {
   background-color: #FFFFFF;
   border-radius: 60%;
@@ -130,7 +125,6 @@ body {
   border: 1em solid #000000A3;
   position: absolute;
   margin: auto;
- 
   transform: translate(-50%, -50%) rotate(-135deg);
   border-right: none;
   border-bottom: none;
