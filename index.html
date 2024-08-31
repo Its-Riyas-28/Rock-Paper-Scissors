@@ -36,17 +36,24 @@
 
     <section class="Gameplay">
       <div class="triangle"></div>
-      <button id="paper">
-        <img src="/Assests/img/icon-hand-paper.png" alt="" class="paper-img" />
+      <button class="choice-btn" data-choice="paper" id="paper">
+        <img src="/Assests/img/icon-paper.png" alt="" class="paper-img" />
       </button>
 
-      <button id="rock">
-        <img src="/Assests/img/icon-fist-rock.png" alt="" class="rock-img" />
+      <button class="choice-btn" data-choice="rock" id="rock">
+        <img src="/Assests/img/icon-rock.png" alt="" class="rock-img" />
       </button>
 
-      <button id="scissors">
+      <button class="choice-btn" data-choice="scissors" id="scissors">
         <img src="/Assests/img/icon-scissors.png" alt="" class="scissors-img" />
       </button>
+    </section>
+
+    <section class="results hidden">
+      <h2 class="results_heading">YOU PICKED</h2>
+      <h2 class="results_heading">PC PICKED</h2>
+      <div class="results_result"></div>
+      <div class="results_result"></div>
     </section>
 
     <button class="rules-button" id="rules-button">RULES</button>
