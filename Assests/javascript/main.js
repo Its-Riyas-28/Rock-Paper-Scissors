@@ -63,13 +63,24 @@ function displayResults(results) {
   resultsDivs.forEach((resultsDiv, idx) => {
     setTimeout(() => {
       resultsDiv.innerHTML = `
-      <div class="choice ${results[idx].name}"> 
-      <img src="/Assests/img/icon-${results[idx].name}.png" alt="${results[idx].name}"/>
-      </div>
+        <div class="choice ${results[idx].name}"> 
+        <img src="/Assests/img/icon-${results[idx].name}.png" alt="${results[idx].name}"/>
+        </div>
       `;
-    }, idx * 300); 
+    }, idx * 200);
   });
+
+  // Determine the winner and add the ripple effect
+  const userChoice = results[0];
+  const pcChoice = results[1];
+  
+  if (userChoice.beats === pcChoice.name) {
+    resultsDivs[0].classList.add('winner'); // User wins
+  } else if (pcChoice.beats === userChoice.name) {
+    resultsDivs[1].classList.add('winner'); // PC wins
+  }
 }
+
 
 // Function to toggle visibility between Gameplay and Results sections
 function toggleGameResults() {

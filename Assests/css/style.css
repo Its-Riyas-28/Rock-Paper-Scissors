@@ -139,30 +139,82 @@ body {
 /* Results Page */
 .results {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
+  column-gap: 25rem;
   place-items: center;
   grid-template-areas: 
     "you-title pc-title"
     "you-picked pc-picked";
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
-  gap: 4rem; /* Increase the gap between the columns */
 }
 
 .results_heading {
   font-size: 1.2vmax; /* Slightly smaller font size */
   letter-spacing: 0.1rem;
   color: whitesmoke;
-  margin-top: 10rem; /* Adjust margin as needed */
+  padding-top: 10rem; /* Adjust margin as needed */
 }
 
 .results_result {
-  min-width: 8rem; /* Smaller width */
-  min-height: 8rem; /* Smaller height */
+  position: relative;
+  width: 10rem; /* Adjust as needed */
+  height: 10rem; /* Adjust as needed */
   border-radius: 50%;
-  transform: scale(1.1); /* Adjust scaling */
-  z-index: -1;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+  z-index: 1; /* Ensure it's above the ripples */
 }
+
+.results_result img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.results_result.winner::before,
+.results_result.winner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 12px solid #27911e63;
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+  animation: ripple 4s infinite;
+}
+
+.results_result.winner::after {
+  animation-delay: 1s; 
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1.1;
+  }
+ 
+  50% {
+    transform:scale(0.9); 
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1.1); 
+    opacity: 0.3;
+  } 
+}
+
+
+
+
+
+
+
+
 
 .results_heading:first-of-type {
   grid-area: you-title;
