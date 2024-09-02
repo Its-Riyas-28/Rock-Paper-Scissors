@@ -39,6 +39,9 @@ const gameDiv = document.querySelector(".Gameplay");  // Use querySelector inste
 const resultsDiv = document.querySelector(".results");  // Use querySelector instead of querySelectorAll
 const resultsDivs = document.querySelectorAll(".results_result");
 
+const resultWinner = document.querySelector('.results_winner');
+const resultText = document.querySelector('.results_text');
+
 // Game Logic
 choiceButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -51,6 +54,7 @@ choiceButtons.forEach(button => {
 function choose(choice) {
   const pcChoice = pcChoose();
   displayResults([choice, pcChoice]);
+  displayWinner([choice, pcChoice]);
   toggleGameResults();
 }
 
@@ -86,4 +90,28 @@ function displayResults(results) {
 function toggleGameResults() {
   gameDiv.classList.toggle('hidden');  // Hide the Gameplay section
   resultsDiv.classList.toggle('hidden');  // Show the Results section
+}
+
+function displayWinner(results){
+  setTimeout(()=>{
+      const userWins = isWinner(results);
+      const pcWins = isWinner(results.reverse());
+
+      if (userWins){
+        resultText.innerHTML = "YOU WIN<br><span class='against-pc'>AGAINST PC</span>";
+      }
+      else if(pcWins){
+        resultText.innerHTML = "YOU LOST<br><span class='against-pc'>AGAINST PC</span>";
+      }
+      else{
+        resultText.innerText = "TIE UP";
+      }
+  },1000);
+
+  resultWinner.classList.toggle('hidden')
+  resultsDiv.classList.toggle('show-winner')
+}
+
+function isWinner(results){
+  return results[0].beats === results[1].name;
 }

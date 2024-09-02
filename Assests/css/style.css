@@ -140,7 +140,7 @@ body {
 .results {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 25rem;
+  column-gap: 7rem;
   place-items: center;
   grid-template-areas: 
     "you-title pc-title"
@@ -208,14 +208,6 @@ body {
   } 
 }
 
-
-
-
-
-
-
-
-
 .results_heading:first-of-type {
   grid-area: you-title;
 }
@@ -232,8 +224,45 @@ body {
   grid-area: pc-picked;
 }
 
+.results.show-winner{
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+    "you-title . pc-title"
+    "you-picked result-winner pc-picked";
+}
 
+.results_winner{
+  grid-area: result-winner;
+  display: grid;
+  place-items: center;
+}
 
+.results_text .against-pc{
+  font-size: 0.6em;
+}
+
+.results_text{
+  font-size: 2.1rem;
+  text-align: center;
+  white-space: nowrap;
+  padding-bottom: 20px;
+}
+
+.play-again{
+  background: #FFFFFF;
+  outline: none;
+  text-align: center;
+  white-space: nowrap;
+  border: 2px solid transparent;
+  border-radius: 0.6rem;
+  color:#656565 ;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  text-transform: inherit;
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+}
 
 .hidden{
   display: none;
