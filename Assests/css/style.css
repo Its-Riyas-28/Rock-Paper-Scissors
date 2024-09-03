@@ -312,14 +312,14 @@ body {
 
 .rules h1 {
   text-align: center;
-  font-size: 29px;
+  font-size: 1.6vw;
   font-weight: 500;
 }
 
 .rules ul {
   list-style: none;
   padding: 0 10px;
-  font-size: 13px;
+  font-size: 0.9vw;
 }
 .rules li {
   position: relative;

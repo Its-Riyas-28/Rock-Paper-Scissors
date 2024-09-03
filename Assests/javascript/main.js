@@ -1,23 +1,4 @@
-// RULES MODULE
-document.getElementById("rules-button").addEventListener("click", function () {
-  const rules = document.querySelector(".rules");
-  const closeButton = document.querySelector(".close-button");
 
-  if (rules.style.transform === "scale(1)") {
-    rules.style.transform = "scale(0)";
-    closeButton.style.display = "none";
-  } else {
-    rules.style.transform = "scale(1)";
-    closeButton.style.display = "flex";
-  }
-});
-
-document.getElementById("close-button").addEventListener("click", function () {
-  document.querySelector(".rules").style.transform = "scale(0)";
-  document.querySelector(".close-button").style.display = "none";
-});
-
-// Gameplay
 
 const CHOICES = [
   {
@@ -38,13 +19,17 @@ const choiceButtons = document.querySelectorAll(".choice-btn");
 const gameDiv = document.querySelector(".Gameplay");
 const resultsDiv = document.querySelector(".results");
 const resultsDivs = document.querySelectorAll(".results_result");
-
 const resultWinner = document.querySelector('.results_winner');
 const resultText = document.querySelector('.results_text');
-
 const playAgainBtn = document.querySelector('.play-again');
 
-// Game Logic
+// Add scoreboard elements
+const userScoreElement = document.querySelector('.your .pc-score');
+const pcScoreElement = document.querySelector('.comp .pc-score');
+
+let userScore = 0;
+let pcScore = 0;
+
 choiceButtons.forEach(button => {
   button.addEventListener('click', () => {
     const choiceName = button.dataset.choice;
@@ -57,6 +42,7 @@ function choose(choice) {
   const pcChoice = pcChoose();
   displayResults([choice, pcChoice]);
   displayWinner([choice, pcChoice]);
+  updateScore([choice, pcChoice]);
   toggleGameResults();
 }
 
@@ -76,7 +62,7 @@ function displayResults(results) {
     }, idx * 200);
   });
 
-  //the ripple effect
+  // Ripple effect
   const userChoice = results[0];
   const pcChoice = results[1];
   
@@ -87,7 +73,19 @@ function displayResults(results) {
   }
 }
 
-//Gameplay and Results sections
+function updateScore(results) {
+  const userWins = isWinner(results);
+  const pcWins = isWinner(results.reverse());
+
+  if (userWins) {
+    userScore += 1;
+    userScoreElement.textContent = userScore;
+  } else if (pcWins) {
+    pcScore += 1;
+    pcScoreElement.textContent = pcScore;
+  }
+}
+
 function toggleGameResults() {
   gameDiv.classList.toggle('hidden'); 
   resultsDiv.classList.toggle('hidden'); 
@@ -115,7 +113,6 @@ function isWinner(results) {
   return results[0].beats === results[1].name;
 }
 
-// Play Again
 playAgainBtn.addEventListener('click', () => {
   gameDiv.classList.remove('hidden'); 
   resultsDiv.classList.add('hidden'); 
