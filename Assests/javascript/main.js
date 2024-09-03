@@ -17,7 +17,7 @@ document.getElementById("close-button").addEventListener("click", function () {
   document.querySelector(".close-button").style.display = "none";
 });
 
-//Gameplay
+// Gameplay
 
 const CHOICES = [
   {
@@ -35,20 +35,20 @@ const CHOICES = [
 ];
 
 const choiceButtons = document.querySelectorAll(".choice-btn");
-const gameDiv = document.querySelector(".Gameplay");  // Use querySelector instead of querySelectorAll
-const resultsDiv = document.querySelector(".results");  // Use querySelector instead of querySelectorAll
+const gameDiv = document.querySelector(".Gameplay");
+const resultsDiv = document.querySelector(".results");
 const resultsDivs = document.querySelectorAll(".results_result");
 
 const resultWinner = document.querySelector('.results_winner');
 const resultText = document.querySelector('.results_text');
 
-const playAgainBtn = document.querySelector('.play-again'); 
+const playAgainBtn = document.querySelector('.play-again');
 
 // Game Logic
 choiceButtons.forEach(button => {
   button.addEventListener('click', () => {
     const choiceName = button.dataset.choice;
-    const choice = CHOICES.find(choice => choice.name === choiceName); // Corrected the assignment operator to equality check
+    const choice = CHOICES.find(choice => choice.name === choiceName);
     choose(choice);
   });
 });
@@ -69,14 +69,14 @@ function displayResults(results) {
   resultsDivs.forEach((resultsDiv, idx) => {
     setTimeout(() => {
       resultsDiv.innerHTML = `
-        <div class="choice ${results[idx].name}"> 
+        <div class="choice ${results[idx].name}">
         <img src="/Assests/img/icon-${results[idx].name}.png" alt="${results[idx].name}"/>
         </div>
       `;
     }, idx * 200);
   });
 
-  // Determine the winner and add the ripple effect
+  //the ripple effect
   const userChoice = results[0];
   const pcChoice = results[1];
   
@@ -87,47 +87,44 @@ function displayResults(results) {
   }
 }
 
-
-// Function to toggle visibility between Gameplay and Results sections
+//Gameplay and Results sections
 function toggleGameResults() {
-  gameDiv.classList.toggle('hidden');  // Hide the Gameplay section
-  resultsDiv.classList.toggle('hidden');  // Show the Results section
+  gameDiv.classList.toggle('hidden'); 
+  resultsDiv.classList.toggle('hidden'); 
 }
 
-function displayWinner(results){
-  setTimeout(()=>{
-      const userWins = isWinner(results);
-      const pcWins = isWinner(results.reverse());
+function displayWinner(results) {
+  setTimeout(() => {
+    const userWins = isWinner(results);
+    const pcWins = isWinner(results.reverse());
 
-      if (userWins){
-        resultText.innerHTML = "YOU WIN<br><span class='against-pc'>AGAINST PC</span>";
-      }
-      else if(pcWins){
-        resultText.innerHTML = "YOU LOST<br><span class='against-pc'>AGAINST PC</span>";
-      }
-      else{
-        resultText.innerText = "TIE UP";
-      }
-  },200);
+    if (userWins) {
+      resultText.innerHTML = "YOU WIN<br><span class='against-pc'>AGAINST PC</span>";
+    } else if (pcWins) {
+      resultText.innerHTML = "YOU LOST<br><span class='against-pc'>AGAINST PC</span>";
+    } else {
+      resultText.innerText = "TIE UP";
+    }
+  }, 200);
 
-  resultWinner.classList.toggle('hidden')
-  resultsDiv.classList.toggle('show-winner')
+  resultWinner.classList.remove('hidden'); 
+  resultsDiv.classList.add('show-winner'); 
 }
 
-function isWinner(results){
+function isWinner(results) {
   return results[0].beats === results[1].name;
 }
 
 // Play Again
-playAgainBtn.addEventListener('click',()=>{
-  gameDiv.classList.toggle('hidden')
-  resultsDiv.classList.toggle('hidden')
+playAgainBtn.addEventListener('click', () => {
+  gameDiv.classList.remove('hidden'); 
+  resultsDiv.classList.add('hidden'); 
 
-  resultsDiv.forEach(resultDiv =>{
-    resultDiv.innerHTML=""
-    resultDiv.classList.remove('winner')
-  })
-  resultText.innerText="";
-  resultWinner.classList.toggle('hidden')
-  resultsDiv.classList.toggle('show-winner')
-})
+  resultsDivs.forEach(resultDiv => {  
+    resultDiv.innerHTML = "";
+    resultDiv.classList.remove('winner');
+  });
+  resultText.innerText = "";
+  resultWinner.classList.add('hidden'); 
+  resultsDiv.classList.remove('show-winner'); 
+});
