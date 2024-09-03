@@ -42,6 +42,8 @@ const resultsDivs = document.querySelectorAll(".results_result");
 const resultWinner = document.querySelector('.results_winner');
 const resultText = document.querySelector('.results_text');
 
+const playAgainBtn = document.querySelector('.play-again'); 
+
 // Game Logic
 choiceButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -106,7 +108,7 @@ function displayWinner(results){
       else{
         resultText.innerText = "TIE UP";
       }
-  },1000);
+  },200);
 
   resultWinner.classList.toggle('hidden')
   resultsDiv.classList.toggle('show-winner')
@@ -115,3 +117,17 @@ function displayWinner(results){
 function isWinner(results){
   return results[0].beats === results[1].name;
 }
+
+// Play Again
+playAgainBtn.addEventListener('click',()=>{
+  gameDiv.classList.toggle('hidden')
+  resultsDiv.classList.toggle('hidden')
+
+  resultsDiv.forEach(resultDiv =>{
+    resultDiv.innerHTML=""
+    resultDiv.classList.remove('winner')
+  })
+  resultText.innerText="";
+  resultWinner.classList.toggle('hidden')
+  resultsDiv.classList.toggle('show-winner')
+})
