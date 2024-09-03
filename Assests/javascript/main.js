@@ -1,4 +1,4 @@
-
+// Existing JavaScript code...
 
 const CHOICES = [
   {
@@ -27,8 +27,13 @@ const playAgainBtn = document.querySelector('.play-again');
 const userScoreElement = document.querySelector('.your .pc-score');
 const pcScoreElement = document.querySelector('.comp .pc-score');
 
-let userScore = 0;
-let pcScore = 0;
+// Load scores from localStorage
+let userScore = parseInt(localStorage.getItem('userScore')) || 0;
+let pcScore = parseInt(localStorage.getItem('pcScore')) || 0;
+
+// Update the scoreboard display
+userScoreElement.textContent = userScore;
+pcScoreElement.textContent = pcScore;
 
 choiceButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -80,9 +85,11 @@ function updateScore(results) {
   if (userWins) {
     userScore += 1;
     userScoreElement.textContent = userScore;
+    localStorage.setItem('userScore', userScore);
   } else if (pcWins) {
     pcScore += 1;
     pcScoreElement.textContent = pcScore;
+    localStorage.setItem('pcScore', pcScore);
   }
 }
 
